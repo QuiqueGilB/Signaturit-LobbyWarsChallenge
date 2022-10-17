@@ -1,4 +1,4 @@
-#env=dev
+env=dev
 
 install:
 	docker-compose run --rm composer install
