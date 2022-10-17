@@ -4,11 +4,7 @@
 use Signaturit\LobbyWarsChallenge\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
-if (!is_file(dirname(__DIR__) . '/vendor/autoload_runtime.php')) {
-    throw new LogicException('Symfony Runtime is missing. Try running "composer require symfony/runtime".');
-}
-
-require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
+require_once dirname(__DIR__) . '/src/SharedContext/SymfonyModule/Infrastructure/Boot/bootstrap.php';
 
 return static fn(array $context) => new Application(new Kernel($context['APP_ENV'], (bool)$context['APP_DEBUG']));
 
