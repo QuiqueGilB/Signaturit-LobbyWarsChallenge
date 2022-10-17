@@ -1,6 +1,6 @@
 <?php
 
-namespace Signaturit\LobbyWarsChallenge;
+namespace Signaturit\LobbyWarsChallenge\SharedContext\SymfonyModule\Infrastructure\Boot;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

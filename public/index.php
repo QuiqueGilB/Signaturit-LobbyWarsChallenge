@@ -1,6 +1,6 @@
 <?php
 
-use Signaturit\LobbyWarsChallenge\Kernel;
+use Signaturit\LobbyWarsChallenge\SharedContext\SymfonyModule\Infrastructure\Boot\Kernel;
 
 require_once dirname(__DIR__) . '/src/SharedContext/SymfonyModule/Infrastructure/Boot/bootstrap.php';
 
