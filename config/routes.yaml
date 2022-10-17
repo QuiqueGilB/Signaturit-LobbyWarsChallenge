@@ -1,7 +1,4 @@
 controllers:
-    resource: ../src/Controller/
+    resource: "../src/*Context/*Module/Infrastructure/Entrypoint/Http/**/*Controller.php"
     type: annotation
 
-kernel:
-    resource: ../src/Kernel.php
-    type: annotation
