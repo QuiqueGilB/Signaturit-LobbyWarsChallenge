@@ -9,3 +9,8 @@ if (!is_file($projectDir . '/vendor/autoload_runtime.php')) {
 
 require_once $projectDir . '/vendor/autoload_runtime.php';
 (new Dotenv())->bootEnv($projectDir . '/.env');
+
+if ($_SERVER['APP_DEBUG']) {
+    umask(0000);
+    Symfony\Component\ErrorHandler\Debug::enable();
+}
