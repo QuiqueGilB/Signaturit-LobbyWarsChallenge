@@ -2,10 +2,10 @@
 
 namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract;
 
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Command;
+use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Query;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\QueryResponse;
 
+/** @method QueryResponse __invoke(Query $query) */
 interface QueryHandler
 {
-    public function __invoke(Command $command): QueryResponse;
 }
