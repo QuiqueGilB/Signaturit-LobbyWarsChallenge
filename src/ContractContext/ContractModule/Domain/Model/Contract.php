@@ -38,17 +38,21 @@ class Contract extends AggregateRoot
         return $this->winner;
     }
 
-    public function put(?Participant $winner): void
+    public function put(?Participant $winner, Participant ...$participants): void
     {
         $isANewWinner = $winner?->id() !== $this->winner?->id();
-        $this->doUpdate($winner);
+        $this->doUpdate($winner, ...$participants);
         $this->record(new ContractUpdatedEvent($this));
         $isANewWinner && $this->record(new ContractWonEvent($this));
     }
 
-    public function patch(Participant $winner = null): void
+    /** @param Participant[] $participants */
+    public function patch(Participant $winner = null, array $participants = null): void
     {
-        $this->put($winner ?? $this->winner);
+        $this->put(
+            $winner ?? $this->winner,
+            ...($participants ?? $this->participants ?? [])
+        );
     }
 
     private function doUpdate(?Participant $winner, Participant ...$participants): void
