@@ -37,7 +37,7 @@ abstract class DomainEvent
 
     abstract protected static function action(): string;
 
-    private static function version(): string
+    protected static function version(): string
     {
         return 'v1';
     }
