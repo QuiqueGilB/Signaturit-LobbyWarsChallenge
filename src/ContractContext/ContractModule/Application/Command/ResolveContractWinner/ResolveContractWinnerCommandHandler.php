@@ -20,17 +20,16 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
     public function __invoke(ResolveContractWinnerCommand $command): void
     {
         $contract = $this->contractRepository->byId($command->contractId);
-        null === $contract && throw ContractNotFoundException::byId($command->contractId);
+        is_null($contract) && throw ContractNotFoundException::byId($command->contractId);
 
-        $participants = $contract->participants;
+        $participants = $contract->participants();
 
-        foreach ($participants as $participant) {
+        array_walk($participants, function (Participant $participant): void {
             $participant->update($this->resolveSignatureScoresService->acumulate(...$participant->signatures()));
-        }
+        });
 
-        $maxScore = max(array_map(static fn(Participant $participant) => $participant->score(), $participants));
-        /** @var Participant[] $winners */
-        $winners = array_filter($participants, static fn($participant) => $participant->score() === $maxScore);
+        $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
+        $winners = array_filter($participants, static fn($participant): bool => $participant->score() === $maxScore);
 
         empty($winners) && throw ContractHasNotWinnersException::zero($contract->id());
         1 !== count($winners) && throw ContractHasNotWinnersException::many($contract->id());

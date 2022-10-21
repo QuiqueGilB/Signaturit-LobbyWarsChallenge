@@ -9,13 +9,23 @@ use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\
 class Contract extends AggregateRoot
 {
     /** @var Participant[] */
-    public readonly array $participants;
-    public readonly ?Participant $winner;
+    private array $participants;
+    private ?Participant $winner;
 
     public function __construct(Uuid $id, Participant ...$participants)
     {
         parent::__construct($id);
         $this->participants = $participants;
+    }
+
+    public function participants(): array
+    {
+        return $this->participants;
+    }
+
+    public function winner(): ?Participant
+    {
+        return $this->winner;
     }
 
     public function update(Participant $winner): void
