@@ -23,6 +23,11 @@ class Contract extends AggregateRoot
         $this->record(new ContractCreatedEvent($this));
     }
 
+    public function hasWinner(): bool
+    {
+        return !is_null($this->winner);
+    }
+
     public function participants(): array
     {
         return $this->participants;
@@ -33,7 +38,7 @@ class Contract extends AggregateRoot
         return $this->winner;
     }
 
-    public function put(?Participant $winner,): void
+    public function put(?Participant $winner): void
     {
         $isANewWinner = $winner?->id() !== $this->winner?->id();
         $this->doUpdate($winner);
