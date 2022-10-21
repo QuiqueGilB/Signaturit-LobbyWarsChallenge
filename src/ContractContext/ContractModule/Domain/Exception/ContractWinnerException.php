@@ -16,6 +16,10 @@ class ContractWinnerException extends DomainException
         return new static(sprintf(''));
     }
 
+    public static function unresolved(Uuid $contractId): static
+    {
+        return new static(sprintf('The contract %s has not winner', $contractId));
+    }
     
 
 }
