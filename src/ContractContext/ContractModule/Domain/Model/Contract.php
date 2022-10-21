@@ -3,6 +3,10 @@
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model;
 
 use DateTimeImmutable;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractCreatedEvent;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractUpdatedEvent;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractWonEvent;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractWinnerException;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Model\AggregateRoot;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 
@@ -15,7 +19,8 @@ class Contract extends AggregateRoot
     public function __construct(Uuid $id, Participant ...$participants)
     {
         parent::__construct($id);
-        $this->participants = $participants;
+        $this->doUpdate(null, ...$participants);
+        $this->record(new ContractCreatedEvent($this));
     }
 
     public function participants(): array
@@ -28,14 +33,24 @@ class Contract extends AggregateRoot
         return $this->winner;
     }
 
-    public function update(Participant $winner): void
+    public function put(?Participant $winner,): void
     {
+        $isANewWinner = $winner?->id() !== $this->winner?->id();
         $this->doUpdate($winner);
+        $this->record(new ContractUpdatedEvent($this));
+        $isANewWinner && $this->record(new ContractWonEvent($this));
     }
 
-    private function doUpdate(Participant $winner): void
+    public function patch(Participant $winner = null): void
     {
+        $this->put($winner ?? $this->winner);
+    }
+
+    private function doUpdate(?Participant $winner, Participant ...$participants): void
+    {
+        $this->validateNewWinner($winner);
         $this->winner = $winner;
+        $this->participants = $participants;
         $this->updatedAt = new DateTimeImmutable();
     }
 

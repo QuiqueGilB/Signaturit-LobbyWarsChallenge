@@ -34,7 +34,7 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
         empty($winners) && throw ContractHasNotWinnersException::zero($contract->id());
         1 !== count($winners) && throw ContractHasNotWinnersException::many($contract->id());
 
-        $contract->update($winners[0]);
+        $contract->patch(winner: $winners[0]);
         $this->contractRepository->save($contract);
     }
 }
