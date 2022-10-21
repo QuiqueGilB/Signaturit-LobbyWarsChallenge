@@ -22,6 +22,10 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
         $contract = $this->contractRepository->byId($command->contractId);
         is_null($contract) && throw ContractNotFoundException::byId($command->contractId);
 
+        if (null !== $contract->winner()) {
+            return;
+        }
+
         $participants = $contract->participants();
 
         array_walk($participants, function (Participant $participant): void {
