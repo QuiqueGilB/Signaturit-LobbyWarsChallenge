@@ -38,4 +38,13 @@ class Contract extends AggregateRoot
         $this->winner = $winner;
         $this->updatedAt = new DateTimeImmutable();
     }
+
+    private function validateNewWinner(?Participant $winner): void
+    {
+        if (is_null($this->winner) || $this->winner === $winner) {
+            return;
+        }
+
+        throw ContractWinnerException::hasAlready($this->id);
+    }
 }
