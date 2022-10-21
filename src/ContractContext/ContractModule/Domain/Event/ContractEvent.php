@@ -20,4 +20,21 @@ abstract class ContractEvent extends DomainEvent
         $this->updatedAt = $contract->updatedAt();
         $this->createdAt = $contract->createdAt();
     }
+
+    protected static function context(): string
+    {
+        return 'contractContext';
+    }
+
+    protected static function module(): string
+    {
+        return 'contractModule';
+    }
+
+    protected static function resource(): string
+    {
+        return 'contract';
+    }
+
+
 }

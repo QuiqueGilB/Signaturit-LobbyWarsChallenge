@@ -4,4 +4,9 @@ namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Ev
 
 class ContractUpdatedEvent extends ContractEvent
 {
+    protected static function action(): string
+    {
+        return 'updated';
+    }
+
 }

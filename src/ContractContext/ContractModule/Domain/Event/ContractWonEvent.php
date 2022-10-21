@@ -16,4 +16,9 @@ class ContractWonEvent extends ContractEvent
         $this->winnerParticipantId = $contract->winner()?->id();
         $this->winnerScore = $contract->winner()?->score();
     }
+
+    protected static function action(): string
+    {
+        return 'won';
+    }
 }
