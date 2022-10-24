@@ -1,6 +1,6 @@
 <?php
 
-namespace Signaturit\LobbyWarsChallenge\Tests\ContractContext\ContractModule\Domain\Service;
+namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\ContractContext\ContractModule\Domain\Service;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService;
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
