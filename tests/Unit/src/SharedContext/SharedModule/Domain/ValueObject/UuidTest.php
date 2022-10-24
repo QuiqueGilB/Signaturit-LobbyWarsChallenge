@@ -2,11 +2,11 @@
 
 namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\SharedContext\SharedModule\Domain\ValueObject;
 
-use PHPUnit\Framework\TestCase;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Exception\InvalidUuidException;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
 
+/** @covers Uuid */
 class UuidTest extends BaseUnitTest
 {
     /** @dataProvider stage */
