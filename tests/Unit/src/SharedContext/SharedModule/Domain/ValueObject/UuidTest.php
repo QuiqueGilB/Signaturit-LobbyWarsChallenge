@@ -16,12 +16,10 @@ class UuidTest extends BaseUnitTest
         new Uuid($uuid);
     }
 
-
     public function stage(): iterable
     {
         yield 'valid from string' => ['fbdd63aa-3f1f-4138-b04f-ef06f5411eac', true];
         yield 'invalid from string' => ['fake uuid', false];
         yield 'created from v4' => [Uuid::v4()->value, true];
     }
-
 }
