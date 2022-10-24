@@ -11,21 +11,25 @@ class ResolveNeedSignatureToWinService
     {
     }
 
-    /**
-     * TODO: Calculate many signatures
-     * @return Signature[]
-     */
+    /** @return Signature[] */
     public function needToWin(int $maxScore, Signature ...$signatures): array
     {
+        if ($maxScore < $this->resolveSignatureScoresService->acumulate(...$signatures)) {
+            return [];
+        }
+
         $signaturesSorted = Signature::cases();
         usort($signaturesSorted, static fn(Signature $a, Signature $b) => $a->score() <=> $b->score());
 
-        foreach ($signaturesSorted as $signature) {
-            if ($maxScore < $this->resolveSignatureScoresService->acumulate($signature, ...$signatures)) {
-                return [$signature];
+        /** @var Signature[] $needToWin */
+        $needToWin = [];
+        while (true) {
+            foreach ($signaturesSorted as $signature) {
+                if ($maxScore < $this->resolveSignatureScoresService->acumulate($signature, ...$needToWin, ...$signatures)) {
+                    return [...$needToWin, $signature];
+                }
             }
+            $needToWin[] = $signature;
         }
-
-        throw CanNotResolveNeedSignaturesToWinException::onlyOnceSignature($maxScore, ...$signatures);
     }
 }
