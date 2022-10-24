@@ -5,7 +5,7 @@ namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Ex
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Exception\DomainException;
 
-class ImpossibleWinException extends DomainException
+class CanNotResolveNeedSignaturesToWinException extends DomainException
 {
     public static function domainErrorCode(): string
     {

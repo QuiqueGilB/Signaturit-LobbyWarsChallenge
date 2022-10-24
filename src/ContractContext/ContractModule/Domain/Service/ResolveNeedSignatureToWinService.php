@@ -2,7 +2,7 @@
 
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service;
 
-use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ImpossibleWinException;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\CanNotResolveNeedSignaturesToWinException;
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 
 class ResolveNeedSignatureToWinService
@@ -26,6 +26,6 @@ class ResolveNeedSignatureToWinService
             }
         }
 
-        throw ImpossibleWinException::onlyOnceSignature($maxScore, ...$signatures);
+        throw CanNotResolveNeedSignaturesToWinException::onlyOnceSignature($maxScore, ...$signatures);
     }
 }
