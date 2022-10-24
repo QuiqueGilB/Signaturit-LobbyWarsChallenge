@@ -19,12 +19,7 @@ class Participant extends Aggregate
     public function __construct(Uuid $id, Signature ...$signatures)
     {
         parent::__construct($id);
-        $this->doUpdate(null, ...$signatures);
-    }
-
-    public function update(?int $score, Signature ...$signatures): void
-    {
-        $this->doUpdate($score, ...$signatures);
+        $this->doUpdate(null, [], $signatures);
     }
 
     public function hasUnknownSignature(): bool
@@ -48,7 +43,7 @@ class Participant extends Aggregate
      */
     public function put(?int $score, array $signatureToWin, array $signatures): void
     {
-        $this->doUpdate($score, ...$signatures);
+        $this->doUpdate($score, $signatureToWin, $signatures);
     }
 
     /**
