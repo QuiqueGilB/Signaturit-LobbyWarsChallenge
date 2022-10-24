@@ -3,7 +3,7 @@
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\ResolveContractWinner;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Contract\ContractRepository;
-use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractHasNotWinnersException;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\CanNotResolveContractWinnerException;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractNotFoundException;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model\Participant;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService;
@@ -35,8 +35,8 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
         $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
         $winners = array_filter($participants, static fn($participant): bool => $participant->score() === $maxScore);
 
-        empty($winners) && throw ContractHasNotWinnersException::zero($contract->id());
-        1 !== count($winners) && throw ContractHasNotWinnersException::many($contract->id());
+        empty($winners) && throw CanNotResolveContractWinnerException::zero($contract->id());
+        1 !== count($winners) && throw CanNotResolveContractWinnerException::many($contract->id());
 
         $contract->patch(winner: $winners[0]);
         $this->contractRepository->save($contract);
