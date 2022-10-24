@@ -13,6 +13,11 @@
       "Signaturit\\LobbyWarsChallenge\\": "src\\"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Signaturit\\LobbyWarsChallenge\\Tests\\": "tests\\"
+    }
+  },
   "require": {
     "symfony/flex": "^1.19",
     "symfony/framework-bundle": "^5.4",
