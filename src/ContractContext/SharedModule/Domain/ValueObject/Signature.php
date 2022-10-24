@@ -9,7 +9,7 @@ enum Signature: string
     case Validator = 'V';
     case Unknown = '#';
 
-    public function score(): float
+    public function score(): int
     {
         return match ($this) {
             self::King => 5,
