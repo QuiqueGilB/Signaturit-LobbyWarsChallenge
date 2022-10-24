@@ -12,8 +12,18 @@ class UuidTest extends BaseUnitTest
     /** @dataProvider stage */
     public function testValidUuid(string $uuid, bool $isValid): void
     {
-        $isValid ?  $this->expectNotToPerformAssertions(): $this->expectException(InvalidUuidException::class);
+        $isValid ? $this->expectNotToPerformAssertions() : $this->expectException(InvalidUuidException::class);
         new Uuid($uuid);
+    }
+
+    /** @dataProvider stage */
+    public function testToString(string $uuid, bool $isValid): void
+    {
+        if (!$isValid) {
+            $this->expectNotToPerformAssertions();
+            return;
+        }
+        self::assertEquals($uuid, (string)(new Uuid($uuid)));
     }
 
     public function stage(): iterable
