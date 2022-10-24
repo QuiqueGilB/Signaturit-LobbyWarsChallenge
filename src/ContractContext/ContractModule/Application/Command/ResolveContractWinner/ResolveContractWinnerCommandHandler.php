@@ -29,7 +29,7 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
         $participants = $contract->participants();
 
         array_walk($participants, function (Participant $participant): void {
-            $participant->update($this->resolveSignatureScoresService->acumulate(...$participant->signatures()));
+            $participant->patch(score: $this->resolveSignatureScoresService->acumulate(...$participant->signatures()));
         });
 
         $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
