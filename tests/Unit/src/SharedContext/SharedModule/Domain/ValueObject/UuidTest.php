@@ -6,7 +6,7 @@ use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Exception\In
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
 
-/** @covers Uuid */
+/** @covers \Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid */
 class UuidTest extends BaseUnitTest
 {
     /** @dataProvider stage */

@@ -6,7 +6,7 @@ use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
 
-/** @covers ResolveSignatureScoresService */
+/** @covers \Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService */
 class ResolveSignatureScoresServiceTest extends BaseUnitTest
 {
     private readonly ResolveSignatureScoresService $resolveSignatureScoresService;
