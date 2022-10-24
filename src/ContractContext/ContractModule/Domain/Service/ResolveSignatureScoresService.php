@@ -2,7 +2,6 @@
 
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service;
 
-use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ImpossibleWinException;
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 
 class ResolveSignatureScoresService
