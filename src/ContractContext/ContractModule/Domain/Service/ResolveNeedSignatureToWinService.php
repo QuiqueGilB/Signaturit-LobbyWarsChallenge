@@ -29,7 +29,7 @@ class ResolveNeedSignatureToWinService
                     return [...$needToWin, $signature];
                 }
             }
-            $needToWin[] = $signature;
+            isset($signature) && $needToWin[] = $signature;
         }
     }
 }
