@@ -4,31 +4,40 @@ namespace Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\Co
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model\Contract;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model\Participant;
+use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\Stub;
 
 /**
  * @method self withId(Uuid $id)
- * @method self withWinner(?Participant $winner)
- * @method self withParticipants(Participant ...$participant)
+ * @method self withSignatures(Signature ...$signatures)
+ * @method self withSignaturesToWin(Signature ...$signatures)
+ * @method self withScore(?int $score)
  */
-class ContractStub extends Stub
+class ParticipantStub extends Stub
 {
     protected Uuid $id;
-    protected ?Participant $winner;
-    /** @var Participant[] */
-    protected array $participants;
+
+    /** @var Signature[] */
+    protected array $signatures;
+
+    /** @var Signature[] */
+    protected array $signaturesToWin;
+
+    protected ?int $score;
+
 
     public function reset(): void
     {
         parent::reset();
         $this->id = Uuid::v4();
-        $this->winner = null;
-        $this->participants = [];
+        $this->signatures = [];
+        $this->signaturesToWin = [];
+        $this->score = null;
     }
 
     public static function stubOf(): string
     {
-        return Contract::class;
+        return Participant::class;
     }
 }
