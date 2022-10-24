@@ -6,7 +6,7 @@ use DateTimeImmutable;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractCreatedEvent;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractUpdatedEvent;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractWonEvent;
-use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractWinnerException;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractAlreadyHasWinnerException;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Model\AggregateRoot;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 
@@ -69,6 +69,6 @@ class Contract extends AggregateRoot
             return;
         }
 
-        throw ContractWinnerException::hasAlready($this->id);
+        throw ContractAlreadyHasWinnerException::hasAlready($this->id);
     }
 }
