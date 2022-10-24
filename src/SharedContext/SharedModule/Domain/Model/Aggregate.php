@@ -10,7 +10,7 @@ abstract class Aggregate
     protected readonly DateTimeImmutable $createdAt;
     protected DateTimeImmutable $updatedAt;
 
-    public function __construct(protected readonly Uuid $id)
+    public function __construct(protected Uuid $id)
     {
         $this->createdAt = new DateTimeImmutable();
         $this->updatedAt = new DateTimeImmutable();
