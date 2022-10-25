@@ -11,13 +11,41 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
+    _instanceof:
+        Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware:
+            tags: [ 'domainMiddlewares' ]
+        Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\QueryHandler:
+            tags: [ 'queryHandlers' ]
+        Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandHandler:
+            tags: [ 'commandHandlers' ]
+        Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Contract\EventSubscriber:
+            tags: [ 'eventSubscribers' ]
+
     Signaturit\LobbyWarsChallenge\:
         resource: '%kernel.project_dir%/src/'
         exclude:
             - '%kernel.project_dir%/src/SharedContext/SymfonyModule/Infrastructure/Boot/Kernel.php'
             - '%kernel.project_dir%/src/SharedContext/SymfonyModule/Infrastructure/Boot/bootstrap.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware:
+        arguments:
+            - !tagged_iterator commandHandlers
+
+    Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\DomainCommandBus:
+        arguments:
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewares:
+                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware
+                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\DispatchEventsMiddleware
+
+    Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\DomainQueryBus:
+        arguments:
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewares:
+                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware
+
+    Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\DomainEventBus:
+        arguments:
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewares:
+                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\Middlewares\DispatchEventMiddleware
