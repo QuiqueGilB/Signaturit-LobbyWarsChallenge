@@ -74,7 +74,7 @@ class Contract extends AggregateRoot
         throw ContractAlreadyHasWinnerException::hasAlready($this->id);
     }
 
-    private function validateParticipants(Participant ...$participants)
+    private function validateParticipants(Participant ...$participants): void
     {
         $minRequired = 2;
         count($participants) < $minRequired && throw MinContractParticipantsException::byId($this->id, $minRequired);
