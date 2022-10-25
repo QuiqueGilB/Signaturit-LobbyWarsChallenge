@@ -19,29 +19,32 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
 
     public function __invoke(ResolveContractWinnerCommand $command): void
     {
-        $contract = $this->contractRepository->byId($command->contractId);
-        is_null($contract) && throw ContractNotFoundException::byId($command->contractId);
+        $contract = $this->contractRepository->byId($command->contractId)
+            ?? throw ContractNotFoundException::byId($command->contractId);
 
         if ($contract->hasWinner()) {
             return;
         }
 
-        $participants = $contract->participants();
-
-        array_walk($participants, function (Participant $participant): void {
+        foreach ($contract->participants() as $participant) {
             $participant->patch(score: $this->resolveSignatureScoresService->acumulate(...$participant->signatures()));
-        });
+        }
 
-        $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
-        $winners = array_values(array_filter(
-            $participants,
-            static fn($participant): bool => $participant->score() === $maxScore
-        ));
-
+        $winners = $this->winners($contract->participants());
         empty($winners) && throw CanNotResolveContractWinnerException::zero($contract->id());
         1 !== count($winners) && throw CanNotResolveContractWinnerException::many($contract->id());
 
         $contract->patch(winner: $winners[0]);
         $this->contractRepository->save($contract);
+    }
+
+    /** @return Participant[] */
+    private function winners(array $participants): array
+    {
+        $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
+        return array_values(array_filter(
+            $participants,
+            static fn($participant): bool => $participant->score() === $maxScore
+        ));
     }
 }
