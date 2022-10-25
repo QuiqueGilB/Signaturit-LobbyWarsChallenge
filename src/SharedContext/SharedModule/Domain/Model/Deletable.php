@@ -8,7 +8,7 @@ use DateTimeImmutable;
 
 trait Deletable
 {
-    public readonly ?DateTimeImmutable $deletedAt;
+    public ?DateTimeImmutable $deletedAt;
 
     public function delete(): void
     {
