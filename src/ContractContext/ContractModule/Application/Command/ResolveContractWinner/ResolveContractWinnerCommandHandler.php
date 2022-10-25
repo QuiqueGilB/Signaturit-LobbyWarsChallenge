@@ -33,7 +33,10 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
         });
 
         $maxScore = max(array_map(static fn(Participant $participant): int => $participant->score(), $participants));
-        $winners = array_filter($participants, static fn($participant): bool => $participant->score() === $maxScore);
+        $winners = array_values(array_filter(
+            $participants,
+            static fn($participant): bool => $participant->score() === $maxScore
+        ));
 
         empty($winners) && throw CanNotResolveContractWinnerException::zero($contract->id());
         1 !== count($winners) && throw CanNotResolveContractWinnerException::many($contract->id());
