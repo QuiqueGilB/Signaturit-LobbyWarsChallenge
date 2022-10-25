@@ -8,7 +8,7 @@ use DateTimeImmutable;
 
 trait Deletable
 {
-    public ?DateTimeImmutable $deletedAt;
+    private ?DateTimeImmutable $deletedAt;
 
     public function delete(): void
     {
@@ -18,5 +18,10 @@ trait Deletable
     public function isDeleted(): bool
     {
         return !is_null($this->deletedAt) && $this->deletedAt < new DateTimeImmutable();
+    }
+
+    public function deletedAt(): ?DateTimeImmutable
+    {
+        return $this->deletedAt;
     }
 }
