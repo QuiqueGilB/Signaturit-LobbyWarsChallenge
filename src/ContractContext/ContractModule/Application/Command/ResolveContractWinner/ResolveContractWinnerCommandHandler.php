@@ -4,6 +4,7 @@ namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Applicati
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Contract\ContractRepository;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\CanNotResolveContractWinnerException;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractAlreadyHasWinnerException;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractNotFoundException;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model\Participant;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService;
@@ -23,7 +24,7 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
             ?? throw ContractNotFoundException::byId($command->contractId);
 
         if ($contract->hasWinner()) {
-            return;
+            throw ContractAlreadyHasWinnerException::hasAlready($contract->id());
         }
 
         empty($contract->participants()) && throw CanNotResolveContractWinnerException::zero($contract->id());
