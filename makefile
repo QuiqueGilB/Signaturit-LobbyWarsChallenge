@@ -4,6 +4,9 @@ up:
 	docker-compose up -d --force-recreate
 down:
 	docker-compose down
+shell: container=php
+shell:
+	docker-compose run --rm php sh
 
 install: command:=install
 require require-dev: package:=
