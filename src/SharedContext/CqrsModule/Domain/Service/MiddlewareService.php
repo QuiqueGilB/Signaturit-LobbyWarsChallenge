@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service;
 
+use Container8acPEWO\get_Console_Command_About_LazyService;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 
 class MiddlewareService
@@ -12,9 +13,8 @@ class MiddlewareService
     {
         $action = static fn($think) => $think;
         foreach ($middlewares as $middleware) {
-            $action = static fn($think): string => $middleware($think, $action);
+            $action = static fn($think) => $middleware($think, $action);
         }
-
         return $action;
     }
 }
