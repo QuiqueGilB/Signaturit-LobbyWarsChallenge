@@ -23,6 +23,7 @@ use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\ContractModule\Domain\Model\ContractStub;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\ContractModule\Domain\Model\ParticipantStub;
 
+/** @covers \Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\ResolveContractWinner\ResolveContractWinnerCommandHandler */
 class ResolveContractWinnerCommandHandlerTest extends BaseUnitTest
 {
     private ContractRepository & MockObject $contractRepositoryMock;
