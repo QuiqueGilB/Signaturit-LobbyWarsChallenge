@@ -14,7 +14,7 @@ composer require require-dev install:
 	docker-compose run --rm composer ${command}
 
 cc: command=cache\:clear
-console cc: command := bin/console ${command}
+console cc: command := bin/console ${command} -e ${env}
 
 test: command:=vendor/bin/phpunit
 
