@@ -17,10 +17,10 @@ class DispatchEventsOccurredMiddleware implements Middleware
     public function __invoke($think, callable $next)
     {
         EventCollector::instance()->purge();
-        $result = $next($think);
+
+        $next($think);
+
         $events = EventCollector::instance()->pull();
         array_walk($events, [$this->eventBus, 'dispatch']);
-
-        return $result;
     }
 }
