@@ -10,7 +10,7 @@ use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\Stub;
 /**
  * @method self withId(Uuid $id)
  * @method self withWinner(?Participant $winner)
- * @method self withParticipants(Participant ...$participant)
+ * @method self withParticipants(Participant[] $participant)
  */
 class ContractStub extends Stub
 {

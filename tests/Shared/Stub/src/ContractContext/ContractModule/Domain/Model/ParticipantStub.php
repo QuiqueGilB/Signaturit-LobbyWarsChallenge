@@ -10,8 +10,8 @@ use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\Stub;
 
 /**
  * @method self withId(Uuid $id)
- * @method self withSignatures(Signature ...$signatures)
- * @method self withSignaturesToWin(Signature ...$signatures)
+ * @method self withSignatures(Signature[] $signatures)
+ * @method self withSignaturesToWin(Signature[] $signatures)
  * @method self withScore(?int $score)
  */
 class ParticipantStub extends Stub
