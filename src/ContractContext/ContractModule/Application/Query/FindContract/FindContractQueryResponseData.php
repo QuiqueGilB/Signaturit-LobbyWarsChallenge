@@ -11,12 +11,10 @@ class FindContractQueryResponseData implements QueryData
 {
     public readonly string $contractId;
     public readonly ?string $winner;
-    public readonly ?string $signatureForWin;
 
     public function __construct(Contract $contract)
     {
         $this->contractId = $contract->id()->value;
         $this->winner = $contract->winner();
-        $this->signatureForWin = $contract->signatureForWin();
     }
 }
