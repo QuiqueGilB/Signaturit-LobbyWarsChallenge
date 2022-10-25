@@ -18,7 +18,7 @@ abstract class Stub
 
     public function __call(string $name, array $arguments): static
     {
-        str_starts_with('with', $name) && $this->magicWith($name, $arguments);
+        str_starts_with($name, 'with') && $this->magicWith($name, $arguments);
         return $this;
     }
 
