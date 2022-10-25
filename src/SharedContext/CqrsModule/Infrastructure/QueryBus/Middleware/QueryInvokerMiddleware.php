@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware;
+namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandHandler;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 
-class CommandHandlerInvokerMiddleware implements Middleware
+class QueryInvokerMiddleware implements Middleware
 {
     /** @var CommandHandler[] */
     private array $handlers;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware;
+namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandHandler;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 
-class CommandHandlerInvokerMiddleware implements Middleware
+class CommandInvokerMiddleware implements Middleware
 {
     /** @var CommandHandler[] */
     private array $handlers;
@@ -19,8 +19,6 @@ class CommandHandlerInvokerMiddleware implements Middleware
 
     public function __invoke($think, callable $next)
     {
-        return $next($this->handlers[0]($think));
+        return $next($this->handlers[get_class($think)]($think));
     }
-
-
 }
