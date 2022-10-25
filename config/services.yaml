@@ -32,6 +32,10 @@ services:
         arguments:
             - !tagged_iterator commandHandlers
 
+    Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware:
+        arguments:
+            - !tagged_iterator queryHandlers
+
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\DomainCommandBus:
         arguments:
             $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
