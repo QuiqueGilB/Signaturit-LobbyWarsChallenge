@@ -7,6 +7,7 @@ use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\Co
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractUpdatedEvent;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Event\ContractWonEvent;
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\ContractAlreadyHasWinnerException;
+use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Exception\MinContractParticipantsException;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Model\AggregateRoot;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 
@@ -58,6 +59,7 @@ class Contract extends AggregateRoot
     private function doUpdate(?Participant $winner, Participant ...$participants): void
     {
         $this->validateNewWinner($winner);
+        $this->validateParticipants(...$participants);
         $this->winner = $winner;
         $this->participants = $participants;
         $this->updatedAt = new DateTimeImmutable();
@@ -70,5 +72,11 @@ class Contract extends AggregateRoot
         }
 
         throw ContractAlreadyHasWinnerException::hasAlready($this->id);
+    }
+
+    private function validateParticipants(Participant ...$participants)
+    {
+        $minRequired = 2;
+        count($participants) < $minRequired && throw MinContractParticipantsException::byId($this->id, $minRequired);
     }
 }
