@@ -31,7 +31,9 @@ class EventCollector
 
     public function pull(): array
     {
-        return $this->events;
+        $events =  $this->events;
+        $this->purge();
+        return $events;
     }
 
     public function purge(): void
