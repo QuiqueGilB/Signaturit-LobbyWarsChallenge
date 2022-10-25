@@ -22,6 +22,7 @@ class Contract extends AggregateRoot
     public function __construct(Uuid $id, Participant ...$participants)
     {
         parent::__construct($id);
+        $this->winner = null;
         $this->doUpdate(null, ...$participants);
         $this->record(new ContractCreatedEvent($this));
     }
