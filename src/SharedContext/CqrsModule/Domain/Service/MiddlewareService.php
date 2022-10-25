@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service;
 
-use Container8acPEWO\get_Console_Command_About_LazyService;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 
 class MiddlewareService
