@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Signaturit\LobbyWarsChallenge\Tests\Shared;
 
-use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\CallFunctionCapsule;
 use Throwable;
 
 trait SharedTestTrait

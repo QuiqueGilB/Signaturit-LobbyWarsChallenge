@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Signaturit\LobbyWarsChallenge\Tests\Shared\Stub;
+namespace Signaturit\LobbyWarsChallenge\Tests\Shared;
 
 use Throwable;
 
