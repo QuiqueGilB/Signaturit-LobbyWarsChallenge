@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\ContractContext\ContractModule\Application\Command\ResolveContractWinner;
 
 use PHPUnit\Framework\MockObject\MockObject;

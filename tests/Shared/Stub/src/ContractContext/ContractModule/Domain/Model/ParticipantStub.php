@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\ContractModule\Domain\Model;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Model\Contract;

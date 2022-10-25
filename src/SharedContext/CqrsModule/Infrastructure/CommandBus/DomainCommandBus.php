@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandBus;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\CreateContract;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\Data\ParticipantData;

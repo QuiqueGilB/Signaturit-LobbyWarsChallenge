@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\ContractContext\ContractModule\Domain\Service;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveNeedSignatureToWinService;

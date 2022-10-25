@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\ResolveSignatureForWin;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Command;

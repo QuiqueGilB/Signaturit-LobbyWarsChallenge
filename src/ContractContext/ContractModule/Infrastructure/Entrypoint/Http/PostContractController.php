@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Infrastructure\Entrypoint\Http;
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\CreateContract\CreateContractCommand;

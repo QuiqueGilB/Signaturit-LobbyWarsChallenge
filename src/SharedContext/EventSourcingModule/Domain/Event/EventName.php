@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Event;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Exception\InvalidEventNameException;
