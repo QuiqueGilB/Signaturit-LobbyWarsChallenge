@@ -16,9 +16,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PostContractController extends Controller
+class PostResolveContractWinnerController extends Controller
 {
-    #[Route('jeje', methods: ['GET', 'POST'])]
+    #[Route('contract/winner', methods: ['POST'])]
     public function __invoke(Request $request): Response
     {
         $contractId = Uuid::v4();
