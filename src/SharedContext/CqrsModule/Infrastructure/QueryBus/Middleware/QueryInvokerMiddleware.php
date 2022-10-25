@@ -10,9 +10,9 @@ use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middl
 class QueryInvokerMiddleware implements Middleware
 {
     /** @var CommandHandler[] */
-    private array $handlers;
+    private iterable $handlers;
 
-    public function __construct(array $handlers)
+    public function __construct(iterable $handlers)
     {
         $this->handlers = $handlers;
     }

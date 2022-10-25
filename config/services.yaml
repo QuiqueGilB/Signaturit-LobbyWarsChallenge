@@ -30,27 +30,27 @@ services:
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware:
         arguments:
-            - !tagged_iterator commandHandlers
+            - !tagged commandHandlers
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware:
         arguments:
-            - !tagged_iterator queryHandlers
+            - !tagged queryHandlers
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\DomainCommandBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
+            $middlewareService: '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService'
             $middlewares:
-                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware
-                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\DispatchEventsMiddleware
+                - '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware'
+                - '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\DispatchEventsOccurredMiddleware'
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\DomainQueryBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
+            $middlewareService: '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService'
             $middlewares:
-                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware
+                - '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware'
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\DomainEventBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
+            $middlewareService: '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService'
             $middlewares:
-                - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\Middlewares\DispatchEventMiddleware
+                - '@Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\Middlewares\DispatchEventMiddleware'

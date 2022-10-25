@@ -6,11 +6,11 @@ namespace Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Infras
 
 use Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Contract\EventDispatcher;
 use Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Event\DomainEvent;
-use Symfony\Component\EventDispatcher\EventDispatcher as SymfonyEventDispatcher;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class SfEventDispatcher implements EventDispatcher
 {
-    public function __construct(private readonly SymfonyEventDispatcher $eventDispatcher)
+    public function __construct(private readonly EventDispatcherInterface $eventDispatcher)
     {
     }
 
