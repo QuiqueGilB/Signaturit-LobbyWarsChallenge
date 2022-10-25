@@ -94,34 +94,34 @@ class ResolveContractWinnerCommandHandlerTest extends BaseUnitTest
             new ResolveContractWinnerCommand($uuid = Uuid::v4()),
             $contractStub->withId($uuid)
                 ->withWinner($winner = $participantStub->stub())
-                ->withParticipants($winner)
+                ->withParticipants([$winner])
                 ->stub()
         ];
         yield 'without participants' => [
             new ResolveContractWinnerCommand($uuid = Uuid::v4()),
             $contractStub->withId($uuid)
                 ->withWinner(null)
-                ->withParticipants()
+                ->withParticipants([])
                 ->stub()
         ];
         yield 'many winners' => [
             new ResolveContractWinnerCommand($uuid = Uuid::v4()),
             $contractStub->withId($uuid)
                 ->withWinner(null)
-                ->withParticipants(
-                    $participantStub->withSignatures(Signature::King)->stub(),
-                    $participantStub->withSignatures(Signature::King)->stub()
-                )
+                ->withParticipants([
+                    $participantStub->withSignatures([Signature::King])->stub(),
+                    $participantStub->withSignatures([Signature::King])->stub()
+                ])
                 ->stub()
         ];
         yield 'one winner' => [
             new ResolveContractWinnerCommand($uuid = Uuid::v4()),
             $contractStub->withId($uuid)
                 ->withWinner(null)
-                ->withParticipants(
-                    $participantStub->withSignatures(Signature::Notary)->stub(),
-                    $participantStub->withSignatures(Signature::King, Signature::King)->stub()
-                )
+                ->withParticipants([
+                    $participantStub->withSignatures([Signature::Notary])->stub(),
+                    $participantStub->withSignatures([Signature::King, Signature::King])->stub()
+                    ])
                 ->stub()
         ];
     }
