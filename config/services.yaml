@@ -30,11 +30,11 @@ services:
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware:
         arguments:
-            - !tagged commandHandlers
+            - !tagged_iterator { tag: 'commandHandlers', index_by: 'key' }
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware:
         arguments:
-            - !tagged queryHandlers
+            - !tagged_iterator { tag: 'queryHandlers', index_by: 'key' }
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\DomainCommandBus:
         arguments:

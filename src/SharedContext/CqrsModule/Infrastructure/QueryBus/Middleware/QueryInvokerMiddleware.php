@@ -6,6 +6,7 @@ namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandHandler;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
+use Traversable;
 
 class QueryInvokerMiddleware implements Middleware
 {
@@ -14,12 +15,12 @@ class QueryInvokerMiddleware implements Middleware
 
     public function __construct(iterable $handlers)
     {
-        $this->handlers = $handlers;
+        $this->handlers = $handlers instanceof Traversable ? iterator_to_array($handlers) : $handlers;
     }
 
     public function __invoke($think, callable $next)
     {
-        return $next($this->handlers[0]($think));
+        return $next($this->handlers[get_class($think)]($think));
     }
 
 
