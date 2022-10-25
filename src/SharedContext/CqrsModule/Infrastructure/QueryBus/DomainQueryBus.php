@@ -6,9 +6,9 @@ namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\QueryBus;
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Query;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\QueryResponse;
+use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService;
 
 class DomainQueryBus implements QueryBus
 {

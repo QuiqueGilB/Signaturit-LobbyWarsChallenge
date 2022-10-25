@@ -6,8 +6,8 @@ namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandBus;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Command;
+use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService;
 
 class DomainCommandBus implements CommandBus
 {

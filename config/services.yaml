@@ -38,19 +38,19 @@ services:
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\DomainCommandBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
             $middlewares:
                 - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware
                 - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\DispatchEventsMiddleware
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\DomainQueryBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
             $middlewares:
                 - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\QueryBus\Middleware\QueryInvokerMiddleware
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\DomainEventBus:
         arguments:
-            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService
+            $middlewareService: Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService
             $middlewares:
                 - Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus\Middlewares\DispatchEventMiddleware

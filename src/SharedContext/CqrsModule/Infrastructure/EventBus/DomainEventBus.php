@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\EventBus;
 
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\CommandBus;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\EventBus;
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\MiddlewareService;
-use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model\Command;
+use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service\MiddlewareService;
 use Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Event\DomainEvent;
 
 class DomainEventBus implements EventBus

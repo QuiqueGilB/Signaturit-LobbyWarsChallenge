@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain;
+namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Service;
 
 use Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Contract\Middleware;
 
