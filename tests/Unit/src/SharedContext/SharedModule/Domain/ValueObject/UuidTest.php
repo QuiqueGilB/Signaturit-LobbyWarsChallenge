@@ -6,7 +6,7 @@ namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\SharedContext\SharedModul
 
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\Exception\InvalidUuidException;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
-use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
+use Signaturit\LobbyWarsChallenge\Tests\Unit\BaseUnitTest;
 
 /** @covers \Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid */
 class UuidTest extends BaseUnitTest

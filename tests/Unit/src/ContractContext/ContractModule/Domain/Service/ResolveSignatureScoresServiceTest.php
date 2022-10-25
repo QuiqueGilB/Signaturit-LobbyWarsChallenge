@@ -6,7 +6,7 @@ namespace Signaturit\LobbyWarsChallenge\Tests\Unit\src\ContractContext\ContractM
 
 use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService;
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
-use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
+use Signaturit\LobbyWarsChallenge\Tests\Unit\BaseUnitTest;
 
 /** @covers \Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\ResolveSignatureScoresService */
 class ResolveSignatureScoresServiceTest extends BaseUnitTest

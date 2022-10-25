@@ -19,9 +19,9 @@ use Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Domain\Service\
 use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObject\Signature;
 use Signaturit\LobbyWarsChallenge\SharedContext\EventSourcingModule\Domain\Service\EventCollector;
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
-use Signaturit\LobbyWarsChallenge\Tests\Shared\BaseUnitTest;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\ContractModule\Domain\Model\ContractStub;
 use Signaturit\LobbyWarsChallenge\Tests\Shared\Stub\src\ContractContext\ContractModule\Domain\Model\ParticipantStub;
+use Signaturit\LobbyWarsChallenge\Tests\Unit\BaseUnitTest;
 
 /** @covers \Signaturit\LobbyWarsChallenge\ContractContext\ContractModule\Application\Command\ResolveContractWinner\ResolveContractWinnerCommandHandler */
 class ResolveContractWinnerCommandHandlerTest extends BaseUnitTest
