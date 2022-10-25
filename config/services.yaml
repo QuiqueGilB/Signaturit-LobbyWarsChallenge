@@ -26,6 +26,7 @@ services:
         exclude:
             - '%kernel.project_dir%/src/SharedContext/SymfonyModule/Infrastructure/Boot/Kernel.php'
             - '%kernel.project_dir%/src/SharedContext/SymfonyModule/Infrastructure/Boot/bootstrap.php'
+            - '%kernel.project_dir%/src/**/Domain/{Model,ValueObject,Data,Event,Exception}/*'
 
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware:
         arguments:
