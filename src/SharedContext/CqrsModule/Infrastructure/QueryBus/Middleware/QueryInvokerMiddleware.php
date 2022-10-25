@@ -20,7 +20,9 @@ class QueryInvokerMiddleware implements Middleware
 
     public function __invoke($think, callable $next)
     {
-        return $next($this->handlers[get_class($think)]($think));
+        $queryResponse = ($this->handlers[get_class($think) . 'Handler'])($think);
+        $next($think);
+        return $queryResponse;
     }
 
 
