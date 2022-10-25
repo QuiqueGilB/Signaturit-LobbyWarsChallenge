@@ -20,8 +20,6 @@ class CommandInvokerMiddleware implements Middleware
 
     public function __invoke($think, callable $next)
     {
-        dump($this->handlers);
-        die;
         return $next($this->handlers[get_class($think)]($think));
     }
 }
