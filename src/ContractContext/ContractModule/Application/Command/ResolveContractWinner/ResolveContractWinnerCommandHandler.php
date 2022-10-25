@@ -26,12 +26,13 @@ class ResolveContractWinnerCommandHandler implements CommandHandler
             return;
         }
 
+        empty($contract->participants()) && throw CanNotResolveContractWinnerException::zero($contract->id());
+
         foreach ($contract->participants() as $participant) {
             $participant->patch(score: $this->resolveSignatureScoresService->acumulate(...$participant->signatures()));
         }
 
         $winners = $this->winners($contract->participants());
-        empty($winners) && throw CanNotResolveContractWinnerException::zero($contract->id());
         1 !== count($winners) && throw CanNotResolveContractWinnerException::many($contract->id());
 
         $contract->patch(winner: $winners[0]);
