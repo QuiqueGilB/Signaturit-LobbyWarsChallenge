@@ -28,6 +28,14 @@ services:
             - '%kernel.project_dir%/src/SharedContext/SymfonyModule/Infrastructure/Boot/bootstrap.php'
             - '%kernel.project_dir%/src/**/Domain/{Model,ValueObject,Data,Event,Exception}/*'
 
+    Signaturit\LobbyWarsChallenge\SharedContext\HttpModule\Infrastructure\Listener\SfMakeResponseOnExceptionListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.exception',  method: onKernelException }
+
+    Signaturit\LobbyWarsChallenge\SharedContext\HttpModule\Infrastructure\Listener\SfMakeBodyOnJsonRequestListener:
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.request',  method: onRequest }
+
     Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Infrastructure\CommandBus\Middleware\CommandInvokerMiddleware:
         arguments:
             - !tagged_iterator { tag: 'commandHandlers', index_by: 'key' }
