@@ -32,8 +32,8 @@ class EventName extends ValueObject
 
     public function validate(): void
     {
-        str_ends_with('Context', $this->context) || throw InvalidEventNameException::byContext($this->context);
-        str_ends_with('Module', $this->module) || throw InvalidEventNameException::byModule($this->module);
+        str_ends_with($this->context, 'Context') || throw InvalidEventNameException::byContext($this->context);
+        str_ends_with($this->module, 'Module') || throw InvalidEventNameException::byModule($this->module);
         preg_match('/^v\d+$/', $this->version) || throw InvalidEventNameException::byVersion($this->context);
     }
 
