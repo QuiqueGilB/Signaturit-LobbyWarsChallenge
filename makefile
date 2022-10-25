@@ -6,7 +6,7 @@ down:
 	docker-compose down
 shell: container=php
 shell:
-	docker-compose run --rm php sh
+	docker-compose run --rm ${container} sh
 
 install: command:=install
 require require-dev: package:=
