@@ -6,7 +6,7 @@ namespace Signaturit\LobbyWarsChallenge\SharedContext\CqrsModule\Domain\Model;
 
 abstract class QueryResponse
 {
-    protected function __construct(
+    public function __construct(
         public readonly QueryData $data,
         public readonly QueryMetadata $metadata
     ) {
