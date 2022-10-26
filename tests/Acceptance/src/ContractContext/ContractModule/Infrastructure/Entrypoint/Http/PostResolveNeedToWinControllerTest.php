@@ -1,11 +1,11 @@
 <?php
 
-namespace Signaturit\LobbyWarsChallenge\Tests\Acceptance\ContractContext\ContractModule\Infrastructure\Entrypoint\Http;
+namespace Signaturit\LobbyWarsChallenge\Tests\Acceptance\src\ContractContext\ContractModule\Infrastructure\Entrypoint\Http;
 
 use Signaturit\LobbyWarsChallenge\Tests\Acceptance\SfAcceptanceHttpTest;
 use Symfony\Component\HttpFoundation\Request;
 
-class PostResolveContractWinnerControllerTest extends SfAcceptanceHttpTest
+class PostResolveNeedToWinControllerTest extends SfAcceptanceHttpTest
 {
     /** @dataProvider stage */
     public function testExistEndpoint(Request $request): void
@@ -26,14 +26,17 @@ class PostResolveContractWinnerControllerTest extends SfAcceptanceHttpTest
     {
         $signatures = explode(' ', $request->getContent());
         $response = $this->submitRequest($request);
-        self::assertContainsEquals($response->getContent(), $signatures);
+        foreach ($signatures as $signature) {
+            self::assertStringContainsString($signature . ': ', $response->getContent());
+        }
     }
 
     public function stage(): iterable
     {
-        $endpoint = '/contract/winner';
+        $endpoint = '/contract/need-to-win';
         $method = 'POST';
 
-        yield 'good request' => [Request::create(uri: $endpoint, method: $method, content: 'KV N')];
+        yield 'good request' => [Request::create(uri: $endpoint, method: $method, content: 'N V#')];
+
     }
 }
