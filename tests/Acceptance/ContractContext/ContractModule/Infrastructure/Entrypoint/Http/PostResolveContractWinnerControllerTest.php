@@ -34,6 +34,6 @@ class PostResolveContractWinnerControllerTest extends SfAcceptanceHttpTest
         $endpoint = '/contract/winner';
         $method = 'POST';
 
-        yield 'abc' => [Request::create(uri: $endpoint, method: $method, content: ["KV","N"])];
+        yield 'good request' => [Request::create(uri: $endpoint, method: $method, content: 'KV N')];
     }
 }
