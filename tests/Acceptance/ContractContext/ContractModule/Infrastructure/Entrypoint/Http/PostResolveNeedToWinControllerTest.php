@@ -26,7 +26,6 @@ class PostResolveNeedToWinControllerTest extends SfAcceptanceHttpTest
     {
         $signatures = explode(' ', $request->getContent());
         $response = $this->submitRequest($request);
-        dump($response->getContent(), 'wiiii');
         foreach ($signatures as $signature) {
             self::assertStringContainsString($signature . ': ', $response->getContent());
         }
