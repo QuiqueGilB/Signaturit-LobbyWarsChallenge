@@ -14,9 +14,11 @@ abstract class SfSyncEventSubscriber implements EventSubscriberInterface, EventS
     {
     }
 
-    final public static function getSubscribedEvents(): array
+    final public static function getSubscribedEvents(): iterable
     {
-        return static::subscribeTo();
+        foreach (static::subscribeTo() as $eventName) {
+            yield $eventName => ['__invoke', self::priority()];
+        }
     }
 
     public static function priority(): int
