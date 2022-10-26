@@ -39,6 +39,11 @@ class Participant extends Aggregate
         return $this->score;
     }
 
+    public function signaturesToWin(): array
+    {
+        return $this->signaturesToWin;
+    }
+
     /**
      * @param Signature[] $signatureToWin
      * @param Signature[] $signatures
