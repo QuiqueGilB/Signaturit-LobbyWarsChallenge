@@ -8,11 +8,13 @@ use Signaturit\LobbyWarsChallenge\ContractContext\SharedModule\Domain\ValueObjec
 use Signaturit\LobbyWarsChallenge\SharedContext\SharedModule\Domain\ValueObject\Uuid;
 
 /** @property Signature[] $signatures */
+/** @property Signature[] $needToWin */
 class ParticipantData
 {
     public function __construct(
         public readonly ?Uuid $participantId,
         public readonly array $signatures,
+        public readonly array $needToWin = []
     ) {
     }
 }
