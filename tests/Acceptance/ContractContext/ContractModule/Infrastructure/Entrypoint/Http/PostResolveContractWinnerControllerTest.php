@@ -14,6 +14,21 @@ class PostResolveContractWinnerControllerTest extends SfAcceptanceHttpTest
         self::assertEndpointExists($response);
     }
 
+    /** @dataProvider stage */
+    public function testStatusCode(Request $request): void
+    {
+        $response = $this->submitRequest($request);
+        self::assertEquals(201, $response->getStatusCode());
+    }
+
+    /** @dataProvider stage */
+    public function testSchemaOfResponse(Request $request): void
+    {
+        $signatures = explode(' ', $request->getContent());
+        $response = $this->submitRequest($request);
+        self::assertContainsEquals($response->getContent(), $signatures);
+    }
+
     public function stage(): iterable
     {
         $endpoint = '/contract/winner';
